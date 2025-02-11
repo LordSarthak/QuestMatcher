@@ -1,0 +1,171 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('../assets/bg-image1.jpg');
+    line-height: 1.6;
+    padding: 0;
+    font-size: 16px;
+    height: auto;
+    overflow-y: scroll !important;    
+    /* Scrollable when content overflows */
+}
+
+/* Header (Blue Box) Styling */
+/* .header1 {
+    background-color: #5a5757;
+    text-align: center;
+    padding: 10px 0px 25px 0px;
+    margin-top: 226px;
+    padding-top: 30px; */
+    /* Add space between navbar and blue box */
+/* }
+
+.header1 h1 {
+    margin-top: 0;
+    font-size: 36px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+} */
+
+/* FAQ Section Styling */
+.content1 {
+    padding: 20px;
+    font-size: 18px;
+}
+
+
+.faq-title {
+    margin-top: 280px;
+    text-align: center;
+    /* Center the FAQ title */
+    font-size: 40px;
+    margin-bottom: 30px;
+    color: #ddd9e3;
+}
+
+/* FAQ Container for Left and Right Alignment */
+.faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    /* Add space between the FAQ items */
+}
+
+.faq-item {
+    background-color: #898787;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 0 0 45%;
+    /* Make each FAQ item take 45% of the width */
+}
+
+.faq-item h3 {
+    font-size: 24px;
+    color: #bfbcf7;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* Align Left and Right */
+.faq-item.left {
+    order: 1;
+}
+
+.faq-item.right {
+    order: 2;
+}
+
+/* Button Styling */
+.button {
+    background-color: #6c63ff;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 25px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #5a54e6;
+    transform: translateY(-3px);
+}
+
+/* Additional Help Section Styling */
+.additional-help {
+    background-color: #676971;
+    padding: 30px;
+    margin-top: 120px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .faq-title {
+        font-size: 24px;
+    }
+
+    .faq-container {
+        flex-direction: column;
+        /* Stack the FAQ items on smaller screens */
+    }
+
+    .faq-item {
+        padding: 15px;
+        width: 100%;
+        /* Make each FAQ item take the full width */
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 769px) {
+    .help-page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .faq-container {
+        gap: 30px;
+    }
+
+    .faq-item {
+        padding: 25px;
+        width: 45%;
+        /* Two FAQ items side-by-side */
+    }
+
+    .button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
