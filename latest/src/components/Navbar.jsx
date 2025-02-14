@@ -5,6 +5,8 @@ import websiteLogo from '../assets/website-logo.png';
 import loginImage from '../assets/login-image.png';
 import axios from 'axios';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Navbar = ({ isAuthenticated, setIsAuthenticated, userName, setUserName, email, setEmail }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
@@ -31,7 +33,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, userName, setUserName, em
 
     // ✅ Verify session with backend
     axios
-      .get('http://localhost:4000/session', { withCredentials: true })
+      .get(`${BACKEND_URL}/session`, { withCredentials: true })
       .then((response) => {
         if (response.status === 200 && response.data.user) {
           const { username, email } = response.data.user; // ✅ Corrected destructuring
@@ -85,7 +87,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, userName, setUserName, em
 
   const handleLogout = () => {
     axios
-      .post('http://localhost:4000/logout', {}, { withCredentials: true })
+      .post(`${BACKEND_URL}/logout`, {}, { withCredentials: true })
       .then(() => {
         setIsAuthenticated(false);
         setUserName('');

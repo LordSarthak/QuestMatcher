@@ -3,6 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Results.css";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const DOWNLOAD_URL = import.meta.env.VITE_DOWNLOAD_URL;
+
 const Results = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -15,7 +18,7 @@ const Results = () => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/session", {
+        const response = await axios.get(`${BACKEND_URL}/session`, {
           withCredentials: true,
         });
         if (response.status === 200) {
@@ -52,7 +55,7 @@ const Results = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:5000/download",
+        `${DOWNLOAD_URL}/download`,
         results,
         { responseType: "blob" }
       );

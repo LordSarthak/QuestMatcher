@@ -6,7 +6,8 @@ import facebookLogo from "../assets/facebook-logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 
-const GOOGLE_CLIENT_ID = "578193234218-qph46rrk5pq2s0lh97301qgu2siovdug.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 // const FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID";
 
 function Login({ setIsAuthenticated, setUserName, setEmail, setAccountMenuOpen }) {
@@ -36,7 +37,7 @@ function Login({ setIsAuthenticated, setUserName, setEmail, setAccountMenuOpen }
     setErrorMessage(""); // Clear previous errors
 
     try {
-      const response = await fetch("http://localhost:4000/login", {
+      const response = await fetch(`${BACKEND_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,36 +72,6 @@ function Login({ setIsAuthenticated, setUserName, setEmail, setAccountMenuOpen }
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
-  // useEffect(() => {
-  //   window.fbAsyncInit = function () {
-  //     window.FB.init({
-  //       appId: FACEBOOK_APP_ID,
-  //       cookie: true,
-  //       xfbml: true,
-  //       version: "v12.0",
-  //     });
-  //   };
-
-  //   (function (d, s, id) {
-  //     let js, fjs = d.getElementsByTagName(s)[0];
-  //     if (d.getElementById(id)) return;
-  //     js = d.createElement(s);
-  //     js.id = id;
-  //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-  //     fjs.parentNode.insertBefore(js, fjs);
-  //   })(document, "script", "facebook-jssdk");
-  // }, []);
-
-  // const handleFacebookLogin = () => {
-  //   window.FB.login((response) => {
-  //     if (response.authResponse) {
-  //       console.log("Facebook login success:", response);
-  //     } else {
-  //       console.log("Facebook login failed.");
-  //     }
-  //   }, { scope: "public_profile,email" });
-  // };
 
   return (
     <div className="abcd">

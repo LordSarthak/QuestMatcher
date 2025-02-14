@@ -14,8 +14,8 @@ import axios from "axios";  // Make sure to import axios at the top
 //   document.body.appendChild(script);
 // };
 
-const GOOGLE_CLIENT_ID = "578193234218-qph46rrk5pq2s0lh97301qgu2siovdug.apps.googleusercontent.com";
-
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -50,7 +50,7 @@ function SignUp() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/signup', {
+      const response = await fetch(`${BACKEND_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

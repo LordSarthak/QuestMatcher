@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./Contact.css";
 import emailjs from "emailjs-com";
 
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -40,10 +44,10 @@ const Contact = () => {
     // Send email via EmailJS
     emailjs
       .send(
-        "service_6srouzc", // Replace with your EmailJS Service ID
-        "template_zdnkc4o", // Replace with your EmailJS Template ID
+        EMAILJS_SERVICE_ID, // Replace with your EmailJS Service ID
+        EMAILJS_TEMPLATE_ID, // Replace with your EmailJS Template ID
         emailParams,
-        "bDJpXC5dwdo9fAHSN" // Replace with your valid EmailJS Public Key
+        EMAILJS_PUBLIC_KEY // Replace with your valid EmailJS Public Key
       )
       .then(
         (response) => {

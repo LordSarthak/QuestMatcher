@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./ForgotPassword.css";
 
+const BACKEND_URL_1 = import.meta.env.VITE_BACKEND_URL_1;
+
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -12,7 +14,7 @@ const ForgotPassword = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:8000/forgot-password', {
+            const response = await fetch(`${BACKEND_URL_1}/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),

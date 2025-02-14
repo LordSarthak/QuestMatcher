@@ -3,23 +3,28 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import axios from "axios";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const DOWNLOAD_URL = import.meta.env.VITE_DOWNLOAD_URL;
+const AD_CLIENT = import.meta.env.VITE_AD_CLIENT;
+const AD_SLOT = import.meta.env.VITE_AD_SLOT;
+
 const GoogleAd = ({ adClient, adSlot }) => {
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
     script.src =
       "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
-      adClient;
+      AD_CLIENT;
     script.crossOrigin = "anonymous";
     document.body.appendChild(script);
-  }, [adClient]);
+  }, []);
 
   return (
     <ins
       className="adsbygoogle"
       style={{ display: "block" }}
-      data-ad-client={adClient}
-      data-ad-slot={adSlot}
+      data-ad-client={AD_CLIENT}
+      data-ad-slot={AD_SLOT}
       data-ad-format="auto"
       data-full-width-responsive="true"
     ></ins>
@@ -40,7 +45,7 @@ const Home = () => {
       return;
     }
   
-    fetch("http://localhost:4000/session", {
+    fetch(`${BACKEND_URL}/session`, {
       method: "GET",
       credentials: "include",
     })
@@ -100,7 +105,7 @@ const Home = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
+      const response = await axios.post(`${DOWNLOAD_URL}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setLoading(false);
@@ -161,7 +166,7 @@ const Home = () => {
       </div>
       
       {/* Google Ad Section */}
-      <GoogleAd adClient="ca-pub-3985590682104919" adSlot="XXXXXXX" />
+      <GoogleAd />
       </div>
   );
 };
