@@ -1,0 +1,262 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../assets/bg-image1.jpg');
+}
+
+.abcd {
+    position: absolute; /* Change from fixed to absolute */
+    transform: translateX(-45%);
+    top: 13%;
+
+    height: auto;
+    }.login-container {
+    transform: translateX(-4.45%);
+    background-color: #898787;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(55, 53, 53, 0.5);
+    padding: 20px;
+    width: 450px;
+    height: auto;
+}
+
+/* .login-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.login-container::-webkit-scrollbar-thumb {
+    background: #5a54e6;
+    border-radius: 4px;
+}
+
+.login-container::-webkit-scrollbar-thumb:hover {
+    background: #4c47d1;
+} */
+
+h2 {
+    text-align: center;
+    font-size: 50px;
+    color: #5a54e6;
+    margin-bottom: 20px;
+    /* Added space below the heading */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 70%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    /* Adjusted for larger container */
+    padding: 10px;
+    /* Slightly larger padding */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #5a54e6;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: font-size 0.3s;
+}
+
+.eye-icon.hide {
+    font-size: 16px;
+    /* Smaller icon size when hidden */
+}
+
+.eye-icon.show {
+    font-size: 18px;
+    /* Slightly larger when shown */
+}
+
+.forgot-password {
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #5a54e6;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    padding: 12px;
+    /* Increased padding for a larger button */
+    background-color: #5a54e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #4c47d1;
+}
+
+.social-login {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.social-button img.social-icon {
+    width: 20px;
+    /* Adjust size as needed */
+    height: 20px;
+    margin-right: 10px;
+    /* Space between image and text */
+}
+
+.email-button {
+    background-color: #f4f4f9;
+    color: #333;
+    border: 1px solid #ccc;
+    width: auto;
+}
+
+.email-button:hover {
+    background-color: #e0e0e0;
+}
+
+.facebook-button {
+    background-color: #f4f4f9;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.facebook-button:hover {
+    background-color: #e0e0e0;
+}
+
+.no-account {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.no-account a {
+    color: #5a54e6;
+    text-decoration: none;
+}
+
+.no-account a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    /* Adds space between "Sign Up" button and horizontal lines */
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+}
+
+.or-text {
+    margin: 0 10px;
+    /* Space between the lines and the "OR" text */
+    color: #555;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .abcd {
+        position: absolute; /* Change from fixed to absolute */
+        top: 13%;
+        height: auto;
+    }
+        
+    .login-container {
+        margin-top: 65px;
+        transform: translateX(0.9%);
+        background-color: #898787;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(55, 53, 53, 0.5);
+        padding: 20px;
+        width: 400px;
+        height: auto;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-button {
+        padding: 12px;
+        /* Increased padding for a larger button */
+        background-color: #5a54e6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        width: auto;
+    }
+}
