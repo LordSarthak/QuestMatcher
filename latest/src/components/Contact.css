@@ -1,0 +1,157 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url('../assets/bg-image1.jpg');
+    height: 100vh; /* Ensure body fills the full viewport height */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+/* Contact Page Container */
+.contact-container {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    max-width: 1200px; /* Optional: Limit max width for larger screens */
+    background-color: #898787;
+    color: #efeef6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align content vertically */
+    align-items: center; /* Align content horizontally */
+    margin-top: 245px;
+    margin-bottom: 15px;
+}
+
+.contact-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* .contact-container::-webkit-scrollbar-thumb {
+    background: #5a54e6;
+    border-radius: 4px;
+}
+
+.contact-container::-webkit-scrollbar-thumb:hover {
+    background: #4c47d1;
+} */
+
+.contact-container h1 {
+    text-align: center;
+    color: #5a54e6;
+    font-size: 40px;
+}
+
+.contact-container p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* Take full width of the container */
+    max-width: 600px; /* Limit max width for better readability */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+/* Submit Button */
+.btn {
+    padding: 10px;
+    background-color: #6c63ff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #5b58d6;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    
+
+    .contact-container {
+        width: 98%; /* Reduces width for smaller screens */
+        height: auto; /* Adjusts height dynamically */
+        max-height: none;
+        padding: 15px;
+        margin-top: 20%;
+        margin-bottom: 20px;
+        margin-left: 1.2%;
+    }
+
+    .contact-container h1 {
+        text-align: center;
+        color: #5a54e6;
+        font-size: 30px; /* Reduce title size for mobile */
+    }
+
+    .contact-container p {
+        margin-top: 20px;
+        font-size: 14px; /* Adjust paragraph size */
+    }
+
+    form {
+        max-width: 100%; /* Ensure form takes full width */
+        width: 100%;
+        gap: 10px; /* Reduce spacing between fields */
+    }
+
+    .form-group {
+        width: 100%; /* Make inputs span full width */
+    }
+
+    input,
+    textarea {
+        font-size: 14px; /* Adjust font size */
+        padding: 8px; /* Reduce padding */
+    }
+
+    .btn {
+        width: auto; /* Full-width button */
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+}
