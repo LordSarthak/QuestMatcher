@@ -20,7 +20,7 @@ app.use(cors());
 const isWindows = process.platform === "win32";
 const FLASK_SCRIPT = isWindows
     ? `python abcd.py`
-    : `gunicorn -w 4 app:app --bind 127.0.0.1:${FLASK_PORT}`;
+    : `gunicorn -w 4 abcd:app --bind 127.0.0.1:${FLASK_PORT}`;
 exec(FLASK_SCRIPT, (err, stdout, stderr) => {
     if (err) {
         console.error("❌ Error starting Flask server:", err);
