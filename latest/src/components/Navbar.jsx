@@ -190,9 +190,11 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, userName, setUserName, se
     <span></span>
     <span></span>
     <span></span>
-  </div>
-
-  {/* Sidebar Menu */}
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    {/* Sidebar Menu */}
   <div ref={sidebarRef} className={`sidebar ${mobileMenuOpen ? 'open' : ''}`}>
     <ul className="mobile-nav-links">
       {isAuthenticated ? (

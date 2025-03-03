@@ -44,6 +44,7 @@ nav * {
   
 }
 
+
 .website-name-logo {
   margin-right: 10px;
   margin-top: 6px;
@@ -298,6 +299,13 @@ nav li {
     height: 9.5%;
   }
 
+  .website-name-logo {
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 28px;
+    height: 28px;
+  }
+
   .account-email {
     font-size: auto;
     color: #ccc;
@@ -371,6 +379,7 @@ nav li {
 /* Hamburger Icon */
 .hamburger-menu {
   cursor: pointer;
+  margin-top: -8px;
 }
 
 .hamburger-menu span {

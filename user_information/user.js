@@ -40,14 +40,14 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    .then(() => console.log('✅ Connected to MongoDB'))
-    .catch((err) => console.error('❌ MongoDB connection error:', err));
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.error("MongoDB connection error:", err));
 
 // Configure Session Middleware
-const secretKey = process.env.SECRET_KEY || crypto.randomBytes(32).toString("hex");
+const secretKey = crypto.randomBytes(32).toString("hex"); // 256-bit secret key
 app.use(
     session({
-        secret: secretKey,
+        secret: process.env.SECRET_KEY || secretKey,
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
@@ -58,8 +58,8 @@ app.use(
         cookie: {
             maxAge: 24 * 60 * 60 * 1000, // 24 hours
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // true in production with HTTPS
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+            secure: false, // Set to true for HTTPS in production
+            sameSite: "strict",
         },
     })
 );
@@ -94,10 +94,10 @@ app.post("/signup", async (req, res) => {
 
 // API Endpoint to Handle Login
 app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body;  // Use email instead of username
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email });  // Find user by email
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
@@ -118,17 +118,15 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Google Authentication
-const jwtToken = crypto.randomBytes(32).toString("hex");
-const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+// Google Authentication
+const jwtToken = crypto.randomBytes(32).toString("hex"); // 256-bit secret key
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 app.post("/auth/google", async (req, res) => {
     try {
         const { token } = req.body;
-        const ticket = await googleClient.verifyIdToken({
-            idToken: token,
-            audience: process.env.GOOGLE_CLIENT_ID,
-        });
+        const ticket = await googleClient.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
         const { email, name } = ticket.getPayload();
         let user = await User.findOne({ email });
 
@@ -148,6 +146,7 @@ app.post("/auth/google", async (req, res) => {
 
 // API Endpoint to Check Session
 app.get("/session", (req, res) => {
+    console.log("Session data:", req.session);
     if (req.session && req.session.user) {
         res.status(200).json({ user: req.session.user });
     } else {
@@ -155,7 +154,8 @@ app.get("/session", (req, res) => {
     }
 });
 
-// Logout API
+
+// Logout API for both normal and Google logins
 app.post("/logout", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -166,12 +166,12 @@ app.post("/logout", (req, res) => {
             path: "/",
             httpOnly: true,
             sameSite: "strict",
-            secure: process.env.NODE_ENV === "production",
+            secure: false,
         });
         res.status(200).json({ message: "Logged out successfully" });
     });
 });
 
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT);

@@ -113,13 +113,13 @@ textarea:focus {
     
 
     .contact-container {
-        width: 98%; /* Reduces width for smaller screens */
+        width: 96%; /* Reduces width for smaller screens */
         height: auto; /* Adjusts height dynamically */
-        max-height: none;
         padding: 15px;
-        margin-top: 20%;
+        margin-top: 30%;
         margin-bottom: 20px;
-        margin-left: 1.2%;
+        margin-left: 2%;
+        margin-right: 2%;
     }
 
     .contact-container h1 {
