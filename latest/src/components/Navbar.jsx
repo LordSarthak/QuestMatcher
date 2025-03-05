@@ -131,9 +131,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated, userName, setUserName, se
     <div>
       <nav>
         <div className="left-section">
-          <NavLink to="/">
-            <img src={websiteLogo} alt="Website Logo" className="website-name-logo" />
-          </NavLink>
+          <img src={websiteLogo} alt="Website Logo" className="website-name-logo" />
           <NavLink className={(e) => (e.isActive ? 'red' : '')} to="/">
             <li>Home</li>
           </NavLink>
