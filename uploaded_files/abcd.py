@@ -18,7 +18,6 @@ load_dotenv()
 # Get FLASK_PORT from .env
 FLASK_PORT = os.getenv("FLASK_PORT")  # Default to 5001 if not set
 
-
 # Initialize Flask app and enable CORS
 app = Flask(__name__)
 CORS(app)
