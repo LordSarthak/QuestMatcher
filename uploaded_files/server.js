@@ -46,6 +46,10 @@ app.use((req, res, next) => {
     }
 });
 
+// Increase request body size limit
+app.use(express.json({ limit: "99999mb" }));
+app.use(express.urlencoded({ limit: "99999mb", extended: true }));
+
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

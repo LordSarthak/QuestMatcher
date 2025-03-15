@@ -21,6 +21,10 @@ FLASK_PORT = os.getenv("FLASK_PORT")  # Default to 5001 if not set
 
 # Initialize Flask app and enable CORS
 app = Flask(__name__)
+
+# Increase upload limit to 100MB
+app.config['MAX_CONTENT_LENGTH'] = 99999 * 1024 * 1024  # 100MB
+
 CORS(app)
 
 # Configure upload folder

@@ -393,7 +393,7 @@
         "kind": 5,
         "importPath": "uploaded_files.abcd",
         "description": "uploaded_files.abcd",
-        "peekOfCode": "FLASK_PORT = os.getenv(\"FLASK_PORT\")  # Default to 5001 if not set\n# Initialize Flask app and enable CORS\napp = Flask(__name__)\nCORS(app)\n# Configure upload folder\nUPLOAD_FOLDER = 'uploads'\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER\n# Load NLP models\nnlp = SentenceTransformer('all-MiniLM-L6-v2')",
+        "peekOfCode": "FLASK_PORT = os.getenv(\"FLASK_PORT\")  # Default to 5001 if not set\n# Initialize Flask app and enable CORS\napp = Flask(__name__)\n# Increase upload limit to 100MB\napp.config['MAX_CONTENT_LENGTH'] = 99999 * 1024 * 1024  # 100MB\nCORS(app)\n# Configure upload folder\nUPLOAD_FOLDER = 'uploads'\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER",
         "detail": "uploaded_files.abcd",
         "documentation": {}
     },
@@ -402,7 +402,16 @@
         "kind": 5,
         "importPath": "uploaded_files.abcd",
         "description": "uploaded_files.abcd",
-        "peekOfCode": "app = Flask(__name__)\nCORS(app)\n# Configure upload folder\nUPLOAD_FOLDER = 'uploads'\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER\n# Load NLP models\nnlp = SentenceTransformer('all-MiniLM-L6-v2')\n# List of interrogative words and question-related keywords\nINTERROGATIVE_WORDS = [\"what\", \"who\", \"why\", \"how\", \"where\", \"when\", \"which\", \"whom\", \"do\", \"does\", \"did\", \"has\", \"have\", \"had\", \"is\", \"was\", \"are\", \"were\", \"am\", \"will\", \"would\", \"can\", \"could\", \"shall\", \"should\", \"may\", \"might\"]",
+        "peekOfCode": "app = Flask(__name__)\n# Increase upload limit to 100MB\napp.config['MAX_CONTENT_LENGTH'] = 99999 * 1024 * 1024  # 100MB\nCORS(app)\n# Configure upload folder\nUPLOAD_FOLDER = 'uploads'\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER\n# Load NLP models\nnlp = SentenceTransformer('all-MiniLM-L6-v2')",
+        "detail": "uploaded_files.abcd",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAX_CONTENT_LENGTH']",
+        "kind": 5,
+        "importPath": "uploaded_files.abcd",
+        "description": "uploaded_files.abcd",
+        "peekOfCode": "app.config['MAX_CONTENT_LENGTH'] = 99999 * 1024 * 1024  # 100MB\nCORS(app)\n# Configure upload folder\nUPLOAD_FOLDER = 'uploads'\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER\n# Load NLP models\nnlp = SentenceTransformer('all-MiniLM-L6-v2')\n# List of interrogative words and question-related keywords\nINTERROGATIVE_WORDS = [\"what\", \"who\", \"why\", \"how\", \"where\", \"when\", \"which\", \"whom\", \"do\", \"does\", \"did\", \"has\", \"have\", \"had\", \"is\", \"was\", \"are\", \"were\", \"am\", \"will\", \"would\", \"can\", \"could\", \"shall\", \"should\", \"may\", \"might\"]",
         "detail": "uploaded_files.abcd",
         "documentation": {}
     },
