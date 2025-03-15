@@ -16,6 +16,10 @@ const PORT2 = process.env.PORT2; // Ensure PORT2 is properly defined
 // Enable CORS for external access
 app.use(cors());
 
+// Increase request size limit for large files
+app.use(express.json({ limit: "99999mb" }));
+app.use(express.urlencoded({ extended: true, limit: "99999mb" }));
+
 // Start Flask server automatically
 const isWindows = process.platform === "win32";
 const FLASK_SCRIPT = isWindows
@@ -28,6 +32,12 @@ exec(FLASK_SCRIPT, (err, stdout, stderr) => {
         console.log(`✅ Flask server started successfully on port ${FLASK_PORT}`);
     }
 });
+
+// Ensure uploads directory exists
+const uploadBaseDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadBaseDir)) {
+    fs.mkdirSync(uploadBaseDir, { recursive: true });
+}
 
 // Middleware to create a single directory for each request
 app.use((req, res, next) => {
@@ -46,27 +56,26 @@ app.use((req, res, next) => {
     }
 });
 
-// Increase request body size limit
-app.use(express.json({ limit: "99999mb" }));
-app.use(express.urlencoded({ limit: "99999mb", extended: true }));
-
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         if (!req.submissionDir) {
-            return cb(new Error("Submission directory not initialized"));
+            return cb(new Error("Upload directory not initialized"));
         }
         cb(null, req.submissionDir);
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, Date.now() + "-" + file.originalname);
     },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+    storage,
+    limits: { fileSize: 99999 * 1024 * 1024 }, // 99999MB limit
+});
 
 // File Upload Endpoint
-app.post("/upload", upload.array("doc-upload", 10), (req, res) => {
+app.post("/upload", upload.array("doc-upload", 100), (req, res) => {
     try {
         const files = req.files;
 
@@ -86,7 +95,7 @@ app.post("/upload", upload.array("doc-upload", 10), (req, res) => {
 });
 
 // Serve Uploaded Files
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(uploadBaseDir));
 
 // Start Express Server
 app.listen(PORT2);
