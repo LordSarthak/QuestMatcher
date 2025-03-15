@@ -130,7 +130,7 @@ const Home = () => {
                   type="file"
                   id={`doc-upload-${index + 1}`}
                   name="doc-upload"
-                  accept=".doc,.docx"
+                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   onChange={(event) => handleFileChange(event, index)}
                   ref={(el) => (fileInputRefs.current[index] = el)}
                 />
