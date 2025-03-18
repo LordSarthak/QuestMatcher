@@ -74,25 +74,23 @@ const Home = () => {
 
   const handleFileChange = (event, index) => {
     const file = event.target.files[0];
-  
+
     if (file) {
-      const allowedTypes = [
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      ];
-  
-      if (!allowedTypes.includes(file.type)) {
+      const allowedExtensions = [".doc", ".docx"];
+      const fileName = file.name.toLowerCase();
+      const fileExtension = fileName.slice(fileName.lastIndexOf("."));
+
+      if (!allowedExtensions.includes(fileExtension)) {
         alert("Only .doc and .docx files are allowed.");
         event.target.value = ""; // Reset input field
         return;
       }
-  
+
       const newFileList = [...fileList];
       newFileList[index] = file;
       setFileList(newFileList);
     }
   };
-  
 
   const handleFileRemove = (index) => {
     const newFileList = [...fileList];
@@ -108,9 +106,20 @@ const Home = () => {
     event.preventDefault();
 
     const selectedFiles = fileList.filter((file) => file !== null);
+
     if (selectedFiles.length < 2) {
-      alert("Please select at least two files to upload.");
+      alert("Please select at least two .doc or .docx files.");
       return;
+    }
+
+    // Double-check file extensions before submitting
+    for (const file of selectedFiles) {
+      const fileName = file.name.toLowerCase();
+      const fileExtension = fileName.slice(fileName.lastIndexOf("."));
+      if (![".doc", ".docx"].includes(fileExtension)) {
+        alert("Only .doc and .docx files are allowed.");
+        return;
+      }
     }
 
     const formData = new FormData();
@@ -142,20 +151,20 @@ const Home = () => {
               <div key={index} className="file-input-group">
                 <label htmlFor={`doc-upload-${index + 1}`}>Select DOC to upload:</label>
                 <div>
-                <input
-                  type="file"
-                  id={`doc-upload-${index + 1}`}
-                  name="doc-upload"
-                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  onChange={(event) => handleFileChange(event, index)}
-                  ref={(el) => (fileInputRefs.current[index] = el)}
-                />
-                {file && (
-                  <button type="button" className="remove-file-btn" onClick={() => handleFileRemove(index)}>
-                    ❌
-                  </button>
-                )}
-              </div>
+                  <input
+                    type="file"
+                    id={`doc-upload-${index + 1}`}
+                    name="doc-upload"
+                    accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    onChange={(event) => handleFileChange(event, index)}
+                    ref={(el) => (fileInputRefs.current[index] = el)}
+                  />
+                  {file && (
+                    <button type="button" className="remove-file-btn" onClick={() => handleFileRemove(index)}>
+                      ❌
+                    </button>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -185,7 +194,7 @@ const Home = () => {
       
       {/* Google Ad Section */}
       <GoogleAd />
-      </div>
+    </div>
   );
 };
 
