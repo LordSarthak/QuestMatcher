@@ -73,10 +73,26 @@ const Home = () => {
   };
 
   const handleFileChange = (event, index) => {
-    const newFileList = [...fileList];
-    newFileList[index] = event.target.files[0];
-    setFileList(newFileList);
+    const file = event.target.files[0];
+  
+    if (file) {
+      const allowedTypes = [
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ];
+  
+      if (!allowedTypes.includes(file.type)) {
+        alert("Only .doc and .docx files are allowed.");
+        event.target.value = ""; // Reset input field
+        return;
+      }
+  
+      const newFileList = [...fileList];
+      newFileList[index] = file;
+      setFileList(newFileList);
+    }
   };
+  
 
   const handleFileRemove = (index) => {
     const newFileList = [...fileList];
